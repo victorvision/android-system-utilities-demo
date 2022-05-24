@@ -135,4 +135,16 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog rebootAlertDialog = builder.create();
         rebootAlertDialog.show();
     }
+
+    public void turnBuzzerOffButtonClick(View view) {
+        SystemUtilities.turnBuzzerOff();
+    }
+
+    public void turnBuzzerOnButtonClick(View view) {
+        SystemUtilities.turnBuzzerOn();
+    }
+
+    public void soundBuzzerButtonClick(View view) {
+        SystemUtilities.soundBuzzer(100);
+    }
 }
