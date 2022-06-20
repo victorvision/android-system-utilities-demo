@@ -72,7 +72,7 @@ public class SystemUtilities {
      * Hides the navigation and status bars.
      */
     public static void hideBars() {
-        executeCommand("su -c wm overscan 0,-190,0,-45\n");
+        executeCommand("su -c wm overscan 0,-45,0,-45\n");
     }
 
     /**
