@@ -1,10 +1,10 @@
-package com.victorvision.androidsystemutilities;
+package com.victorvision.systemutilities;
 
-import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.Calendar;
 
@@ -217,6 +217,25 @@ public class SystemUtilities {
     }
 
     /**
+     * Installs an application specified by its path, to the system.
+     * @param path Path of the .apk file.
+     */
+    public static void installApplication(String path){
+        ApplicationInstallOptions defaultOptions = ApplicationInstallOptions.createDefaultOptions();
+        installApplication(path, defaultOptions);
+    }
+
+    /**
+     * Installs an application specified by its path, to the system. Use this method when custom installation options are needed.
+     * @param path Path of the .apk file.
+     * @param applicationInstallOptions Application installation options.
+     */
+    public static void installApplication(String path, ApplicationInstallOptions applicationInstallOptions){
+        String result = executeCommand("su -c pm install" + applicationInstallOptions.getFlagString() + path + "\n");
+        Log.d("System Utilities: ", result);
+    }
+
+    /**
      * List the packages installed on the system.
      * @return The packages installed on the system.
      */
@@ -226,6 +245,7 @@ public class SystemUtilities {
 
 
 }
+
 
 
 
