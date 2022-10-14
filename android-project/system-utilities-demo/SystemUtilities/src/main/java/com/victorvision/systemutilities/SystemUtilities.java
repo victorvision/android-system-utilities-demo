@@ -29,7 +29,7 @@ public class SystemUtilities {
 
             String line = "";
             while ((line = reader.readLine()) != null) {
-                output.append(line + "n");
+                output.append(line + "\n");
             }
 
         } catch (Exception e) {
@@ -72,16 +72,35 @@ public class SystemUtilities {
      * Hides the navigation and status bars.
      */
     public static void hideBars() {
-        executeCommand("su -c wm overscan 0,-45,0,-45\n");
+        String result = executeCommand("su -c settings get system user_rotation\n").replace("\n", "");
+        switch (result) {
+            case "0":
+                hideBars(0,-45,0,-45);
+                break;
+            case "1":
+                hideBars(-37,0,-18,0);
+                break;
+            case "2":
+                hideBars(0,-45,0,-45);
+                break;
+            case "3":
+                hideBars(-18,0,-37,0);
+                break;
+            default:
+                hideBars(0,-45,0,-45);
+                break;
+        }
     }
 
     /**
      * Hides the navigation and status bars. Use this method when custom top and bottom offset are needed.
+     * @param leftOffset Pixel overscan offset from left border.
      * @param topOffset Pixel overscan offset from top border.
+     * @param rightOffset Pixel overscan offset from right border.
      * @param bottomOffset Pixel overscan offset from bottom border.
      */
-    public static void hideBars(int topOffset, int bottomOffset) {
-        executeCommand("su -c wm overscan 0," + topOffset + ",0," + bottomOffset + "\n");
+    public static void hideBars(int leftOffset, int topOffset, int rightOffset, int bottomOffset) {
+        executeCommand("su -c wm overscan " + leftOffset + "," + topOffset + "," + rightOffset + "," + bottomOffset + "\n");
     }
 
     /**
