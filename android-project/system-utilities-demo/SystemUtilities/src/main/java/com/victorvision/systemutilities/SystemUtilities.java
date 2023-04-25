@@ -74,17 +74,11 @@ public class SystemUtilities {
     public static void hideBars() {
         String result = executeCommand("su -c settings get system user_rotation\n").replace("\n", "");
         switch (result) {
-            case "0":
-                hideBars(0,-45,0,-45);
-                break;
             case "1":
-                hideBars(-37,0,-18,0);
-                break;
-            case "2":
-                hideBars(0,-45,0,-45);
+                hideBars(-37,0,-21,0);
                 break;
             case "3":
-                hideBars(-18,0,-37,0);
+                hideBars(-21,0,-37,0);
                 break;
             default:
                 hideBars(0,-45,0,-45);

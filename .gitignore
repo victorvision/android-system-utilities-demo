@@ -96,6 +96,8 @@ obj/
 .idea/jarRepositories.xml
 .idea/navEditor.xml
 
+/*/.idea/
+
 # Legacy Eclipse project files
 .classpath
 .project
